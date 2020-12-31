@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td>{{t}}</td>
+                <td colspan="3"></td>
+                <td>{{ total }}</td>
+            </tr>
+            <tr>
+                <td>CASH</td>
+                <td colspan="3"></td>
+                <td>{{ cash }}</td>
+            </tr>
+            <tr>
+                <td>{{gtt}}</td>
+                <td colspan="3"></td>
+                <td>{{ grand_total }}</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.symbol }}</td>
+                <td>{{ stock.company }}</td>
+                <td>{{ stock.quantity }}</td>
+                <td>{{ usd(stock.cprice) }}</td>
+                <td>{{ usd(stock.total) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
